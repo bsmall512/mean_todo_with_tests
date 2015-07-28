@@ -2,8 +2,10 @@ var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
 var db = mongojs('todoList', ['todoList']);
+var bodyParser = require('body-parser')
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.json());
 
 app.get('/todoList', function(req, res){
 	console.log('I received a GET request');
@@ -12,6 +14,13 @@ app.get('/todoList', function(req, res){
     	console.log(docs);
     	res.json(docs);
     })
+})
+
+app.post('/todoList', function(req, res){
+	console.log(req.body);
+	db.todoList.insert(req.body, function(err, docs){
+		res.json(docs);
+	});
 })
 
 app.listen(3000);
