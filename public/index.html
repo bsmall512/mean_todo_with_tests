@@ -19,6 +19,11 @@
           <th>To Do's</th>
   			</tr>	
 		</thead>
+    <tbody>
+      <tr ng-repeat="task in tasks">
+        <td>{{task.task}}</td>
+      </tr>
+    </tbody>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
   <script src="controllers/controller.js"></script>
