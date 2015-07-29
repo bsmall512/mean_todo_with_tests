@@ -24,7 +24,7 @@
         <td><button class="btn btn-primary" ng-click="addToDo()">Add ToDo</button></td>
       </tr>
       <tr ng-repeat="task in tasks">
-        <td><input type="checkbox" ng-click="removeToDo()"/> {{task.task}}</td>
+        <td><input type="checkbox" ng-click="removeToDo(task._id)"/> {{task.task}}</td>
       </tr>
     </tbody>
 

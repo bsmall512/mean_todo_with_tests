@@ -21,4 +21,13 @@ $scope.addToDo = function(){
   });
 }
 
+$scope.removeToDo = function(id){
+  console.log(id);  
+
+  $http.delete('/todoList/' + id).success(function(res){
+    refresh();
+  });
+
+}
+
 }])

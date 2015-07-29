@@ -23,5 +23,13 @@ app.post('/todoList', function(req, res){
 	});
 })
 
+app.delete('/todoList/:id', function(req, res){
+  var id = req.params.id;
+  console.log(id);
+  db.todoList.remove({_id: mongojs.ObjectId(id)}, function(err, doc){
+  	res.json(doc);
+  });
+})
+
 app.listen(3000);
 console.log('server running on port 3000');
