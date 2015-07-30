@@ -25,10 +25,28 @@ app.post('/todoList', function(req, res){
 
 app.delete('/todoList/:id', function(req, res){
   var id = req.params.id;
-  console.log(id);
+  console.log('This should remove ' + id);
   db.todoList.remove({_id: mongojs.ObjectId(id)}, function(err, doc){
   	res.json(doc);
   });
+})
+
+app.get('/todoList/:id', function(req, res){
+	var id = req.params.id;
+	console.log('Got a get request with an ID');
+	db.todoList.findOne({_id: mongojs.ObjectId(id)}, function(err, doc){
+		res.json(doc);
+	});
+})
+
+app.put('/todoList/:id', function(req, res){
+	var id = req.params.id;
+	console.log(req.body.task);
+	db.todoList.findAndModify({query: {_id: mongojs.ObjectId(id)}, 
+		update: {$set: {task: req.body.task}},
+		new: true}, function (err, doc){
+			res.json(doc);
+		});
 })
 
 app.listen(3000);
